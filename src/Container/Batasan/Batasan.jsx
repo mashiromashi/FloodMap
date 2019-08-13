@@ -1,0 +1,122 @@
+import React, { Component } from "react";
+import "materialize-css";
+import "./Batasan.css";
+import apiAddress from "../../util/apiPath";
+import MaterialTable from "material-table";
+
+const columns = [
+  {
+    title: "Water Level",
+    field: "waterLevel"
+  },
+
+  {
+    title: "Rain Level",
+    field: "rainLevel"
+  },
+
+  {
+    field: "createdAt"
+  }
+];
+
+class Batasan extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: "",
+      batasanInfo: []
+    };
+
+    this._handleSelectChange = this._handleSelectChange.bind(this);
+    this.apiFetch = this.apiFetch.bind(this);
+  }
+
+  _handleSelectChange(e) {
+    this.setState({
+      value: e.target.value
+    });
+    console.log(e.target.value);
+  }
+
+  apiFetch = () => {
+    fetch(`${apiAddress}/batasan/getall`)
+      .then(res => {
+        if (res.ok) return res.json();
+      })
+      .then(data => {
+        let batasan = [];
+
+        for (let i = 0; i < data.length; i++) {
+          batasan.push({
+            _id: data[i]._id,
+            createdAt: data[i].createdAt,
+            waterLevel: data[i].waterLevel.$numberDecimal.toString(),
+            rainLevel: data[i].rainLevel.$numberDecimal.toString()
+          });
+        }
+
+        this.setState({
+          batasanInfo: batasan
+        });
+      });
+  };
+
+  componentDidMount() {
+    this.apiFetch();
+    var h_h = document.querySelector(".blue").outerHeight;
+    document.querySelector(".batasan").style.marginTop = h_h;
+  }
+
+  render() {
+    const { value, batasanInfo } = this.state;
+    return (
+      <div
+        className="col s6 m3 l4 batasan"
+        style={{
+          paddingLeft: "10px",
+          //paddingTop: "10px",
+          paddingRight: "10px"
+        }}
+      >
+        <div className="input-field selected">
+          <select onChange={this._handleSelectChange} value={value}>
+            <option defaultValue value="" disabled>
+              Please Choose one
+            </option>
+            <option value="current">Current</option>
+            <option value="pastWeek">Past Week</option>
+            <option value="pastMonth">Past Month</option>
+            <option value="pastYear">Past Year</option>
+            <option value="pastAll">Past All</option>
+          </select>
+        </div>
+        {/* <table className="striped" id="current">
+          <thead>
+            <tr>
+              <th>Sapang Labo Sensor</th>
+              <th>Batasan Bridge Sensor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rainInfo.map(rain => (
+              <tr>
+                <td>{rain.waterLevel}</td>
+                <td>{rain.rainLevel}</td>
+                <td>{rain.createdAt}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table> */}
+        <MaterialTable
+          columns={columns}
+          data={batasanInfo}
+          title="Batasan Sensor"
+        />
+      </div>
+    );
+  }
+}
+
+export default Batasan;

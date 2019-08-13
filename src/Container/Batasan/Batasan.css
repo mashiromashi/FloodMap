@@ -1,0 +1,10 @@
+.rainTable {
+    /* paddingLeft: "10px",
+          paddingTop: "10px",
+          paddingRight: "10px",
+          flexGrow: "2" */
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    flex-grow: 2
+}

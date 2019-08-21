@@ -4,8 +4,8 @@ import "materialize-css";
 import MaterialTable from "material-table";
 
 const columns = [
-  { title: "Water Level", field: "waterLevel" },
-  { title: "Rain Level", field: "rainLevel" },
+  { title: "Water Level (mm)", field: "waterLevel" },
+  { title: "Rain Level (mm)", field: "rainLevel" },
   { field: "createdAt" }
 ];
 
@@ -54,12 +54,6 @@ class Labo extends Component {
   };
   componentDidMount() {
     this.apiFetch();
-    var table_search = document.querySelectorAll(
-      ".MTableToolbar-searchField-37"
-    );
-    for (var i = 0; i < table_search.length; i++) {
-      table_search[i].style.display = "none";
-    }
   }
 
   render() {
@@ -79,28 +73,12 @@ class Labo extends Component {
             <option value="pastAll">Past All</option>
           </select>
         </div>
-        {/* <table>
-          <thead>
-            <tr>
-              <th>Sapang Labo Sensor</th>
-              <th>Batasan Bridge Sensor</th>
-            </tr>
-          </thead>
-          <tbody>
-            {laboInfo.map(water =>
-              water.length === 5 ? (
-                <tr>
-                  <td key="labo">{water.laboSensor_level}</td>
-                  <td key="batasan">{water.batasanSensor_level}</td>
-                  <td>{water.createdAt}</td>
-                </tr>
-              ) : (
-                ""
-              )
-            )}
-          </tbody>
-        </table> */}
-        <MaterialTable columns={columns} data={laboInfo} title="Labo Sensor" />
+        <MaterialTable
+          columns={columns}
+          data={laboInfo}
+          title="Labo Sensor"
+          options={{ search: false, pageSize: 5, pageSizeOptions: [5] }}
+        />
       </div>
     );
   }

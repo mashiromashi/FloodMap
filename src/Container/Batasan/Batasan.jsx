@@ -6,12 +6,12 @@ import MaterialTable from "material-table";
 
 const columns = [
   {
-    title: "Water Level",
+    title: "Water Level (mm)",
     field: "waterLevel"
   },
 
   {
-    title: "Rain Level",
+    title: "Rain Level (mm)",
     field: "rainLevel"
   },
 
@@ -37,7 +37,6 @@ class Batasan extends Component {
     this.setState({
       value: e.target.value
     });
-    console.log(e.target.value);
   }
 
   apiFetch = () => {
@@ -92,27 +91,11 @@ class Batasan extends Component {
             <option value="pastAll">Past All</option>
           </select>
         </div>
-        {/* <table className="striped" id="current">
-          <thead>
-            <tr>
-              <th>Sapang Labo Sensor</th>
-              <th>Batasan Bridge Sensor</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rainInfo.map(rain => (
-              <tr>
-                <td>{rain.waterLevel}</td>
-                <td>{rain.rainLevel}</td>
-                <td>{rain.createdAt}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
         <MaterialTable
           columns={columns}
           data={batasanInfo}
           title="Batasan Sensor"
+          options={{ search: false, pageSize: 5, pageSizeOptions: [5] }}
         />
       </div>
     );

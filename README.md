@@ -1,1 +1,12 @@
-THIS ONE IS FOR YOU, DENZ. 
+Flood Map and Water Level Warning System
+
+Live flood map running google map api with markers that change depending on the current water level. Water level is detected using an ultrasonic sensor connected to an arduino uno r3 with a wifi-module esp8266.
+
+Installation
+1. Clone the repo
+2. Install the dependencies with `yarn`
+
+Usage
+`yarn start`
+
+Build with ♥️

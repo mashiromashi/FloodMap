@@ -7,6 +7,7 @@ Installation
 2. Install the dependencies with `yarn`
 
 Usage
-`yarn start`
+1. run`yarn start` 
+2. localhost will run at port 3000, `http://localhost:3000`
 
 Build with ♥️

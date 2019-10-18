@@ -73,7 +73,7 @@ function GMap() {
 }
 
 //googleMapAPIKey
-const apiKey = "AIzaSyDrMZ-7TEja9Skxb8ZGm6PqLE-j9aOMgRs";
+const apiKey = process.env.REACT_APP_MAP_API_KEY
 
 const WrappedMap = withScriptjs(withGoogleMap(GMap));
 

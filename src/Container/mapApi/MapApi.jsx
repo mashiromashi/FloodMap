@@ -30,7 +30,7 @@ function GMap() {
     }
 
     fetchSensorData();
-  }, []);
+  });
 
   return (
     <GoogleMap

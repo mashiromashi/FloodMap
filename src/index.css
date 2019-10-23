@@ -15,12 +15,11 @@ code {
 
 .details {
   display: grid;
-  grid-template-columns: 1fr 1fr
+  grid-template-columns: 1fr 1fr;
 }
 
-@media (maxWidth:800px) {
+@media (maxwidth: 800px) {
   .details {
-      grid-template-columns: 1fr
+    grid-template-columns: 1fr;
   }
-
 }

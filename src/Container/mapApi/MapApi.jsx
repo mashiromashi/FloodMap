@@ -45,9 +45,9 @@ function GMap() {
             console.log(sensor.id);
           }}
           icon={
-            sensor.waterLevel < 4
+            sensor.waterLevel < 2
               ? "img/cursors/blueLevel.png"
-              : "img/cursors/blackLevel.png"
+              : "img/cursors/greenLevel.png"
           }
         />
       ))}

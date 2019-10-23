@@ -60,6 +60,24 @@ class Batasan extends Component {
       });
   };
 
+  monthlyfetch = () => {
+    fetch(`${apiAddress}/batasan/monthly?q=${inputMonth}`).then(res => {
+      res.json()
+    }).then(data => {
+      let monthlyData = []
+
+      for (let i = 0; i < data.length; i++) {
+        monthlyData.push({
+          _id: data[i]._id,
+          createdAt: data[i].createdAt,
+          waterLevel: data[i].waterLevel.$numberDecimal.toString(),
+        })
+      }
+      this.setState({
+        batasanInfo: monthlyData
+      })
+    })
+  }
 
 
   componentDidMount() {

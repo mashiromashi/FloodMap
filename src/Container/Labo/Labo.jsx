@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import apiAddress from "../../util/apiPath";
 import "materialize-css";
 import MaterialTable from "material-table";
+import monthArray from "../../util/month";
+import moment from 'moment'
 
 const columns = [
   { title: "Water Level (mm)", field: "waterLevel" },
@@ -27,6 +29,28 @@ class Labo extends Component {
   _onChangePage(pageOfItems) {
     //update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
+  }
+
+  monthlyfetch = () => {
+
+    const inputMonth = monthArray[moment().month()]
+
+    fetch(`${apiAddress}/batasan/monthly?q=${inputMonth}`).then(res => {
+      res.json()
+    }).then(data => {
+      let monthlyData = []
+
+      for (let i = 0; i < data.length; i++) {
+        monthlyData.push({
+          _id: data[i]._id,
+          createdAt: data[i].createdAt,
+          waterLevel: data[i].waterLevel.$numberDecimal.toString(),
+        })
+      }
+      this.setState({
+        batasanInfo: monthlyData
+      })
+    })
   }
 
   apiFetch = () => {

@@ -3,18 +3,16 @@ import "materialize-css";
 import "./Batasan.css";
 import apiAddress from "../../util/apiPath";
 import MaterialTable from "material-table";
+import moment from 'moment'
+import monthArray from "../../util/month";
+
+const inputMonth = monthArray[moment().month()]
 
 const columns = [
   {
     title: "Water Level (mm)",
     field: "waterLevel"
   },
-
-  {
-    title: "Rain Level (mm)",
-    field: "rainLevel"
-  },
-
   {
     field: "createdAt"
   }
@@ -52,7 +50,7 @@ class Batasan extends Component {
             _id: data[i]._id,
             createdAt: data[i].createdAt,
             waterLevel: data[i].waterLevel.$numberDecimal.toString(),
-            rainLevel: data[i].rainLevel.$numberDecimal.toString()
+
           });
         }
 
@@ -62,10 +60,12 @@ class Batasan extends Component {
       });
   };
 
+
+
   componentDidMount() {
     this.apiFetch();
-    var h_h = document.querySelector(".blue").outerHeight;
-    document.querySelector(".batasan").style.marginTop = h_h;
+
+
   }
 
   render() {

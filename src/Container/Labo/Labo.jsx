@@ -5,7 +5,6 @@ import MaterialTable from "material-table";
 
 const columns = [
   { title: "Water Level (mm)", field: "waterLevel" },
-  { title: "Rain Level (mm)", field: "rainLevel" },
   { field: "createdAt" }
 ];
 
@@ -24,7 +23,7 @@ class Labo extends Component {
     this.setState({ value: e.target.value });
     console.log(e.target.value);
   }
-  _handleOnSelect(e) {}
+  _handleOnSelect(e) { }
   _onChangePage(pageOfItems) {
     //update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
@@ -41,8 +40,7 @@ class Labo extends Component {
           labo.push({
             _id: data[i]._id,
             createdAt: data[i].createdAt,
-            waterLevel: data[i].waterLevel.$numberDecimal.toString(),
-            rainLevel: data[i].rainLevel.$numberDecimal.toString()
+            waterLevel: data[i].waterLevel.$numberDecimal.toString()
           });
         }
         this.setState({ laboInfo: labo });

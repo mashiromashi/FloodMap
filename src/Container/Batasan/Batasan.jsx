@@ -14,7 +14,9 @@ const columns = [
     field: "waterLevel"
   },
   {
-    field: "createdAt"
+    title: "Date and Time",
+    field: "createdAt",
+    defaultSort: "desc"
   }
 ];
 
@@ -50,10 +52,8 @@ class Batasan extends Component {
             _id: data[i]._id,
             createdAt: data[i].createdAt,
             waterLevel: data[i].waterLevel.$numberDecimal.toString(),
-
           });
         }
-
         this.setState({
           batasanInfo: batasan
         });
@@ -64,8 +64,6 @@ class Batasan extends Component {
 
   componentDidMount() {
     this.apiFetch();
-
-
   }
 
   render() {

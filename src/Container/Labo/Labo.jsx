@@ -5,7 +5,7 @@ import MaterialTable from "material-table";
 
 const columns = [
   { title: "Water Level (mm)", field: "waterLevel" },
-  { field: "createdAt" }
+  { title: "Date and Time", field: "createdAt", defaultSort: "desc" }
 ];
 
 class Labo extends Component {

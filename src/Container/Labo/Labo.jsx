@@ -23,7 +23,6 @@ class Labo extends Component {
 
   _handleSelectChange(e) {
     this.setState({ value: e.target.value });
-    console.log(e.target.value);
   }
   _handleOnSelect(e) { }
   _onChangePage(pageOfItems) {
@@ -32,7 +31,6 @@ class Labo extends Component {
   }
 
   monthlyfetch = () => {
-
     const inputMonth = monthArray[moment().month()]
 
     fetch(`${apiAddress}/batasan/monthly?q=${inputMonth}`).then(res => {
@@ -90,7 +88,7 @@ class Labo extends Component {
             </option>
             <option value="current">Current</option>
             <option value="pastWeek">Past Week</option>
-            <option value="pastMonth">Past Month</option>
+            <option value="pastMonth" onClick={() => { console.log("past month call"); }}>Past Month</option>
             <option value="pastYear">Past Year</option>
             <option value="pastAll">Past All</option>
           </select>

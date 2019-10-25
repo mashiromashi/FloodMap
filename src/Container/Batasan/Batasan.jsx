@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "materialize-css";
 import "./Batasan.css";
 import apiAddress from "../../util/apiPath";
-import MaterialTable from "material-table";
 import moment from 'moment'
 import monthArray from "../../util/month";
+import TableItem from "../../Components/MaterialTable/TableItem/TableItem";
 
 const inputMonth = monthArray[moment().month()]
 
@@ -85,7 +85,7 @@ class Batasan extends Component {
   }
 
   render() {
-    const { value, batasanInfo } = this.state;
+    const { batasanInfo } = this.state;
     return (
       <div
         className="col s6 m3 l4 batasan"
@@ -96,23 +96,12 @@ class Batasan extends Component {
         }}
       >
         <div className="input-field selected">
-          <select onChange={this._handleSelectChange} value={value}>
-            <option defaultValue value="" disabled>
-              Please Choose one
-            </option>
-            <option value="current">Current</option>
-            <option value="pastWeek">Past Week</option>
-            <option value="pastMonth">Past Month</option>
-            <option value="pastYear">Past Year</option>
-            <option value="pastAll">Past All</option>
-          </select>
         </div>
-        <MaterialTable
+
+        <TableItem
           columns={columns}
           data={batasanInfo}
-          title="Batasan Sensor"
-          options={{ search: false, pageSize: 5, pageSizeOptions: [5] }}
-        />
+          title="Batasan Sensor" />
       </div>
     );
   }

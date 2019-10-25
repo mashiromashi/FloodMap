@@ -4,6 +4,7 @@ import "materialize-css";
 import MaterialTable from "material-table";
 import monthArray from "../../util/month";
 import moment from 'moment'
+import TableItem from "../../Components/MaterialTable/TableItem/TableItem";
 
 const columns = [
   { title: "Water Level (mm)", field: "waterLevel" },
@@ -77,27 +78,16 @@ class Labo extends Component {
   }
 
   render() {
-    const { value, laboInfo } = this.state;
+    const { laboInfo } = this.state;
 
     return (
       <div className="col s6 m3 l4 offset-s6" style={{ paddingLeft: "10px" }}>
         <div className="input-field selected">
-          <select value={value} onChange={this._handleSelectChange}>
-            <option defaultValue value="" disabled>
-              Please Choose One
-            </option>
-            <option value="current">Current</option>
-            <option value="pastWeek">Past Week</option>
-            <option value="pastMonth" onClick={() => { console.log("past month call"); }}>Past Month</option>
-            <option value="pastYear">Past Year</option>
-            <option value="pastAll">Past All</option>
-          </select>
         </div>
-        <MaterialTable
+        <TableItem
           columns={columns}
           data={laboInfo}
           title="Labo Sensor"
-          options={{ search: false, pageSize: 5, pageSizeOptions: [5] }}
         />
       </div>
     );

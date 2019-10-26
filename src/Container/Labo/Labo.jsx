@@ -1,15 +1,9 @@
 import React, { Component } from "react";
-import apiAddress from "../../util/apiPath";
 import "materialize-css";
-import MaterialTable from "material-table";
-import monthArray from "../../util/month";
-import moment from 'moment'
 import TableItem from "../../Components/MaterialTable/TableItem/TableItem";
+import { MonthlyLabo, getAllLabo } from "../../util/ApiAddresses";
+import { columns } from "../../util/Columns";
 
-const columns = [
-  { title: "Water Level (mm)", field: "waterLevel" },
-  { title: "Date and Time", field: "createdAt", defaultSort: "desc" }
-];
 
 class Labo extends Component {
   constructor(props) {
@@ -32,9 +26,8 @@ class Labo extends Component {
   }
 
   monthlyfetch = () => {
-    const inputMonth = monthArray[moment().month()]
 
-    fetch(`${apiAddress}/batasan/monthly?q=${inputMonth}`).then(res => {
+    fetch(MonthlyLabo).then(res => {
       res.json()
     }).then(data => {
       let monthlyData = []
@@ -53,7 +46,7 @@ class Labo extends Component {
   }
 
   apiFetch = () => {
-    fetch(`${apiAddress}/labo/getall`)
+    fetch(getAllLabo)
       .then(res => {
         if (res.ok) return res.json();
       })

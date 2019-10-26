@@ -1,24 +1,11 @@
 import React, { Component } from "react";
 import "materialize-css";
 import "./Batasan.css";
-import apiAddress from "../../util/apiPath";
-import moment from 'moment'
-import monthArray from "../../util/month";
 import TableItem from "../../Components/MaterialTable/TableItem/TableItem";
+import { MonthlyBatasan, getAllBatasan } from "../../util/ApiAddresses";
+import { columns } from "../../util/Columns";
 
-const inputMonth = monthArray[moment().month()]
 
-const columns = [
-  {
-    title: "Water Level (mm)",
-    field: "waterLevel"
-  },
-  {
-    title: "Date and Time",
-    field: "createdAt",
-    defaultSort: "desc"
-  }
-];
 
 class Batasan extends Component {
   constructor(props) {
@@ -40,7 +27,7 @@ class Batasan extends Component {
   }
 
   apiFetch = () => {
-    fetch(`${apiAddress}/batasan/getall`)
+    fetch(getAllBatasan)
       .then(res => {
         if (res.ok) return res.json();
       })
@@ -61,7 +48,7 @@ class Batasan extends Component {
   };
 
   monthlyfetch = () => {
-    fetch(`${apiAddress}/batasan/monthly?q=${inputMonth}`).then(res => {
+    fetch(MonthlyBatasan).then(res => {
       res.json()
     }).then(data => {
       let monthlyData = []
@@ -97,7 +84,6 @@ class Batasan extends Component {
       >
         <div className="input-field selected">
         </div>
-
         <TableItem
           columns={columns}
           data={batasanInfo}

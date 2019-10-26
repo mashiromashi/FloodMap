@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import DetailsPage from "../Pages/DetailsPage";
 import MapPage from "../Pages/MapPage";
-import InsertDataPage from "../Pages/insertData";
 import { BrowserRouter } from "react-router-dom";
 
 class Content extends Component {
@@ -12,7 +11,6 @@ class Content extends Component {
         <Switch>
           <Route exact path="/" component={MapPage} />
           <Route path="/details" component={DetailsPage} />
-          <Route path="/insert" component={InsertDataPage} />
         </Switch>
       </BrowserRouter>
     );

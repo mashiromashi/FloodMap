@@ -8,7 +8,7 @@ class MapPage extends Component {
   render() {
     return (
       <div className='' style={{ display: "flex", margin: "auto" }}>
-        <div style={{}}>
+        <div>
           <Map />
         </div>
       </div>

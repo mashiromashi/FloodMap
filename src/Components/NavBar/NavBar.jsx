@@ -6,7 +6,7 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="blue">
-        <div class="nav-wrapper">
+        <div className="nav-wrapper">
           <NavBarList />
         </div>
       </nav>

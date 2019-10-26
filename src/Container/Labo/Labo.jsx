@@ -9,7 +9,7 @@ class Labo extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: "", laboInfo: [], pageOfItems: [] };
+    this.state = { value: "", laboInfo: [], monthlyData: [] };
 
     this._handleSelectChange = this._handleSelectChange.bind(this);
     this.apiFetch = this.apiFetch.bind(this);
@@ -26,7 +26,6 @@ class Labo extends Component {
   }
 
   monthlyfetch = () => {
-
     fetch(MonthlyLabo).then(res => {
       res.json()
     }).then(data => {
@@ -40,7 +39,7 @@ class Labo extends Component {
         })
       }
       this.setState({
-        batasanInfo: monthlyData
+        monthlyData: monthlyData
       })
     })
   }

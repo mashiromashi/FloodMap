@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import DetailsPage from "../Pages/DetailsPage";
 import MapPage from "../Pages/MapPage";
 import { BrowserRouter } from "react-router-dom";
 
-class Content extends Component {
+class Content {
   render() {
     return (
       <BrowserRouter>

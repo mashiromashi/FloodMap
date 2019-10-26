@@ -1,7 +1,7 @@
 import React from "react";
 import NavBarItem from "../navBarItem/navBarItem";
 
-function NavBarList() {
+const NavBarList = () => {
   return (
     <ul>
       <NavBarItem pageName="Home" pageRoute="/" />

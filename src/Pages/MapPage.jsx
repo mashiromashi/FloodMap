@@ -1,19 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import Map from "../Container/mapApi/MapApi";
-class MapPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <div className='' style={{ display: "flex", margin: "auto" }}>
-        <div style={{}}>
-          <Map />
-        </div>
+
+const MapPage = () => {
+  return (
+    <div style={{ display: "flex", margin: "auto" }}>
+      <div style={{}}>
+        <Map />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default MapPage;

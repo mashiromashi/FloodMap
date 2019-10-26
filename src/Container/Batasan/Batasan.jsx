@@ -47,6 +47,10 @@ class Batasan extends Component {
       });
   };
 
+  /**
+   *
+   * @deprecated doesn't seem to be used, can be removed
+   */
   monthlyfetch = () => {
     fetch(MonthlyBatasan).then(res => {
       res.json()

@@ -1,7 +1,7 @@
 import React from 'react'
 import MaterialTable from 'material-table'
 
-function TableItem({ columns, data, title }) {
+const TableItem = ({ columns, data, title }) => {
     return (
         <MaterialTable
             columns={columns}

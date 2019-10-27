@@ -6,7 +6,7 @@ const TableItem = ({ columns, data, title }) => (
     columns={columns}
     data={data}
     title={title}
-    options={{ search: false, pageSize: 5, pageSizeOptions: [5] }}
+    options={{ search: false, pageSize: 10, pageSizeOptions: [10] }}
   />
 );
 

@@ -7,7 +7,7 @@ import {
   Marker,
   InfoWindow,
 } from 'react-google-maps';
-import apiAddress from '../../util/apiPath';
+import { apiAddress } from '../../util/ApiAddresses';
 
 function GMap() {
   const [sensors, setSensors] = useState([

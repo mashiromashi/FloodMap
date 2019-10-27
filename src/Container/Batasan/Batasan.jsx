@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "materialize-css";
-import "./Batasan.css";
 import TableItem from "../../Components/MaterialTable/TableItem/TableItem";
 import { MonthlyBatasan, getAllBatasan } from "../../util/ApiAddresses";
 import { columns } from "../../util/Columns";
@@ -47,6 +46,10 @@ class Batasan extends Component {
       });
   };
 
+  /**
+   *
+   * @deprecated doesn't seem to be used, can be removed
+   */
   monthlyfetch = () => {
     fetch(MonthlyBatasan).then(res => {
       res.json()

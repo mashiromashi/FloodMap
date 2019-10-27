@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Map from "../Container/mapApi/MapApi";
-class MapPage extends Component {
+class MapPage {
   constructor(props) {
     super(props);
     this.state = {};
@@ -8,7 +8,7 @@ class MapPage extends Component {
   render() {
     return (
       <div className='' style={{ display: "flex", margin: "auto" }}>
-        <div style={{}}>
+        <div>
           <Map />
         </div>
       </div>

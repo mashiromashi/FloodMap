@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import NavBarList from "./navBarList/navBarList";
 
-class NavBar extends Component {
+class NavBar {
   state = {};
   render() {
     return (
       <nav className="blue">
-        <div class="nav-wrapper">
+        <div className="nav-wrapper">
           <NavBarList />
         </div>
       </nav>

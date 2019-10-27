@@ -1,4 +1,5 @@
 module.exports = {
+    "parser": "babel-eslint",
     "env": {
         "browser": true,
         "es6": true
@@ -19,6 +20,9 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/prop-types": [0]
+        "react/prop-types": [0],
+        "no-console": "off",
+        "no-underscore-dangle": [0],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
     }
 };

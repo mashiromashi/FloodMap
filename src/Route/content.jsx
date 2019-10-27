@@ -1,10 +1,10 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import DetailsPage from "../Pages/DetailsPage";
-import MapPage from "../Pages/MapPage";
-import { BrowserRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import DetailsPage from '../Pages/DetailsPage';
+import MapPage from '../Pages/MapPage';
 
-class Content {
+// eslint-disable-next-line react/prefer-stateless-function
+class Content extends Component {
   render() {
     return (
       <BrowserRouter>

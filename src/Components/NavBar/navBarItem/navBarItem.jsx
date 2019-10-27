@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react';
 
-const NavBarItem = ({ pageName, pageRoute }) => {
-  return (
-    <li>
-      <a href={pageRoute}>{pageName}</a>
-    </li>
-  );
-}
+const NavBarItem = ({ pageName, pageRoute }) => (
+  <li>
+    <a href={pageRoute}>{pageName}</a>
+  </li>
+);
 
 export default NavBarItem;

@@ -1,32 +1,42 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/jsx-one-expression-per-line */
+import React, { useState, useEffect } from 'react';
 import {
   GoogleMap,
   withScriptjs,
   withGoogleMap,
   Marker,
-  InfoWindow
-} from "react-google-maps";
-import apiAddress from "../../util/apiPath";
+  InfoWindow,
+} from 'react-google-maps';
+import apiAddress from '../../util/apiPath';
 
 function GMap() {
-  let [sensors, setSensors] = useState([
-    { id: 1, name: "Batasan Bridge Sensor", lat: 14.679486, lng: 121.109826, path: 'batasan', waterLevel: 0.0 },
-    { id: 2, name: "Sapang Labo Sensor", lat: 14.692949, lng: 121.125996, path: 'labo', waterLevel: 0.0 }
+  const [sensors, setSensors] = useState([
+    {
+      id: 1, name: 'Batasan Bridge Sensor', lat: 14.679486, lng: 121.109826, path: 'batasan', waterLevel: 0.0,
+    },
+    {
+      id: 2, name: 'Sapang Labo Sensor', lat: 14.692949, lng: 121.125996, path: 'labo', waterLevel: 0.0,
+    },
   ]);
   const [selectedSensor, setSelectedSensor] = useState(null);
 
   useEffect(() => {
-    async function fetchSensorData(sensor) {
+    // eslint: sensor was never used
+    // async function fetchSensorData(sensor) {
+    async function fetchSensorData() {
       sensors.forEach(async (sensor, index) => {
         const res = await fetch(`${apiAddress}/${sensor.path}/getlatest`);
         const data = await res.json();
         if (data && data.waterLevel) {
           const newSensors = [...sensors];
-          const updatedSensor = { ...sensor, waterLevel: parseFloat(data.waterLevel.$numberDecimal) }
+          const updatedSensor = {
+            ...sensor,
+            waterLevel: parseFloat(data.waterLevel.$numberDecimal),
+          };
           newSensors[index] = updatedSensor;
           setSensors(newSensors);
         }
-      })
+      });
     }
     fetchSensorData();
   });
@@ -36,7 +46,7 @@ function GMap() {
       defaultZoom={14}
       defaultCenter={{ lat: 14.69872, lng: 121.12606 }}
     >
-      {sensors.map(sensor => (
+      {sensors.map((sensor) => (
         <Marker
           key={sensor.id}
           position={{ lat: sensor.lat, lng: sensor.lng }}
@@ -46,8 +56,8 @@ function GMap() {
           }}
           icon={
             sensor.waterLevel < 2
-              ? "img/cursors/blueLevel.png"
-              : "img/cursors/greenLevel.png"
+              ? 'img/cursors/blueLevel.png'
+              : 'img/cursors/greenLevel.png'
           }
         />
       ))}
@@ -55,7 +65,7 @@ function GMap() {
         <InfoWindow
           position={{
             lat: selectedSensor.lat,
-            lng: selectedSensor.lng
+            lng: selectedSensor.lng,
           }}
           onCloseClick={() => {
             setSelectedSensor(null);
@@ -64,7 +74,7 @@ function GMap() {
           <div>
             <p>
               {selectedSensor.name} : {selectedSensor.waterLevel} mm
-              </p>
+            </p>
           </div>
         </InfoWindow>
       )}
@@ -72,19 +82,19 @@ function GMap() {
   );
 }
 
-//googleMapAPIKey
-const apiKey = process.env.REACT_APP_MAP_API_KEY
+// googleMapAPIKey
+const apiKey = process.env.REACT_APP_MAP_API_KEY;
 
 const WrappedMap = withScriptjs(withGoogleMap(GMap));
 
 export default function MapApi() {
   return (
-    <div style={{ width: "100vw", height: "90vh", padding: "50px" }}>
+    <div style={{ width: '100vw', height: '90vh', padding: '50px' }}>
       <WrappedMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${apiKey}`}
-        loadingElement={<div style={{ height: "100%" }} />}
-        containerElement={<div style={{ height: "100%" }} />}
-        mapElement={<div style={{ height: "100%" }} />}
+        loadingElement={<div style={{ height: '100%' }} />}
+        containerElement={<div style={{ height: '100%' }} />}
+        mapElement={<div style={{ height: '100%' }} />}
       />
     </div>
   );

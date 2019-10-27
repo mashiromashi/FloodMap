@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import 'materialize-css';
 import TableItem from '../../Components/MaterialTable/TableItem/TableItem';
-import { MonthlyLabo, getAllLabo } from '../../util/ApiAddresses';
+import { monthlyLabo, weeklyLabo, currentLabo } from '../../util/ApiAddresses';
 import { columns } from '../../util/Columns';
+import ButtonItem from '../../Components/Buttons/ButtonItem/ButtonItem';
 
 
 class Labo extends Component {
@@ -11,23 +12,18 @@ class Labo extends Component {
     super(props);
 
     this.state = {
-      value: '',
       laboInfo: [],
-      monthlyData: [],
     };
-
-    this._handleSelectChange = this._handleSelectChange.bind(this);
-    this.apiFetch = this.apiFetch.bind(this);
-    this._onChangePage = this._onChangePage.bind(this);
   }
 
   componentDidMount() {
-    this.apiFetch();
+    this.currentFetch();
   }
 
-  monthlyfetch = () => {
-    fetch(MonthlyLabo).then((res) => {
-      res.json();
+
+  monthlyFetch = () => {
+    fetch(monthlyLabo).then((res) => {
+      return res.json();
     }).then((data) => {
       const monthlyData = [];
 
@@ -38,46 +34,56 @@ class Labo extends Component {
           waterLevel: data[i].waterLevel.$numberDecimal.toString(),
         });
       }
+      console.log(monthlyData);
+
       this.setState({
-        monthlyData,
+        laboInfo: monthlyData,
       });
     });
   }
 
-  apiFetch = () => {
-    fetch(getAllLabo)
-      // eslint-disable-next-line consistent-return
-      .then((res) => {
-        if (res.ok) return res.json();
-      })
-      .then((data) => {
-        const labo = [];
-        for (let i = 0; i < data.length; i++) {
-          labo.push({
-            _id: data[i]._id,
-            createdAt: data[i].createdAt,
-            waterLevel: data[i].waterLevel.$numberDecimal.toString(),
-          });
-        }
-        this.setState({ laboInfo: labo });
-        // eslint-disable-next-line react/destructuring-assignment
-        console.log(this.state.laboInfo[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // fetches weekly data from the database
+  weeklyFetch = () => {
+    fetch(weeklyLabo).then(res => {
+      return res.json()
+    }).then(data => {
+      const weekly = []
 
-  _handleSelectChange(e) {
-    this.setState({ value: e.target.value });
+      for (let i = 0; i < data.length; i++) {
+        weekly.push({
+          _id: data[i]._id,
+          createdAt: data[i].createdAt,
+          waterLevel: data[i].waterLevel.$numberDecimal.toString(),
+        })
+      }
+      console.log(weekly);
+
+      this.setState({
+        laboInfo: weekly
+      })
+    })
   }
 
-  // Not being used yet
-  // _handleOnSelect(e) { }
+  // fetches current data from the database
+  currentFetch = () => {
+    fetch(currentLabo).then(res => {
+      return res.json()
+    }).then(data => {
+      const daily = []
 
-  _onChangePage(pageOfItems) {
-    // update state with new page of items
-    this.setState({ pageOfItems });
+      for (let i = 0; i < data.length; i++) {
+        daily.push({
+          _id: data[i]._id,
+          createdAt: data[i].createdAt,
+          waterLevel: data[i].waterLevel.$numberDecimal.toString(),
+        })
+      }
+      console.log(daily);
+
+      this.setState({
+        laboInfo: daily
+      })
+    })
   }
 
   render() {
@@ -85,7 +91,11 @@ class Labo extends Component {
 
     return (
       <div className="col s6 m3 l4 offset-s6" style={{ paddingLeft: '10px' }}>
-        <div className="input-field selected" />
+        <div className="center-align">
+          <ButtonItem buttonName="Current" onClick={this.currentFetch} />
+          <ButtonItem buttonName="Past Week" onClick={this.weeklyFetch} />
+          <ButtonItem buttonName="Past month" onClick={this.monthlyFetch} className="btn" />
+        </div>
         <TableItem
           columns={columns}
           data={laboInfo}

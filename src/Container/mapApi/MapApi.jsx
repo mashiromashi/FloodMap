@@ -20,9 +20,11 @@ function GMap() {
   ]);
   const [selectedSensor, setSelectedSensor] = useState(null);
 
+
   useEffect(() => {
     // eslint: sensor was never used
     // async function fetchSensorData(sensor) {
+
     async function fetchSensorData() {
       sensors.forEach(async (sensor, index) => {
         const res = await fetch(`${apiAddress}/${sensor.path}/getlatest`);
@@ -38,7 +40,12 @@ function GMap() {
         }
       });
     }
-    fetchSensorData();
+    const timeout = setTimeout(
+      fetchSensorData,
+      5000);
+    return () => clearTimeout(
+      timeout, 5500
+    )
   });
 
   return (

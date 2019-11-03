@@ -5,6 +5,7 @@ import { monthlyBatasan, weeklyBatasan, currentBatasan } from "../../util/ApiAdd
 import { columns } from "../../util/Columns";
 import ButtonItem from "../../Components/Buttons/ButtonItem/ButtonItem";
 
+
 class Batasan extends Component {
   constructor(props) {
     super(props);
@@ -94,10 +95,10 @@ class Batasan extends Component {
           paddingRight: "10px"
         }}
       >
-        <div className="center-align">
+        <div className="center-align" style={{ zIndex: 2 }}>
           <ButtonItem buttonName="Current" onClick={this.currentFetch} />
           <ButtonItem buttonName="Past Week" onClick={this.weeklyFetch} />
-          <ButtonItem buttonName="Past month" onClick={this.monthlyFetch} className="btn" />
+          <ButtonItem buttonName="Past month" onClick={this.monthlyFetch} />
         </div>
         <TableItem
           columns={columns}

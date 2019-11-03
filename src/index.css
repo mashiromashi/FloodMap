@@ -23,3 +23,24 @@ code {
     grid-template-columns: 1fr;
   }
 }
+
+.buttons {
+  padding: 10px;
+  margin-left: 10px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  background-color: #2196f3;
+  transition: 0.3s ease-out;
+  overflow: hidden;
+  border: #2196f3;
+  border-radius: 2px;
+  color: white;
+  margin-bottom: 15px;
+  box-shadow: 0, 0, 0, 0.14;
+  box-sizing: border-box;
+}
+
+h6 {
+  text-align: center;
+}

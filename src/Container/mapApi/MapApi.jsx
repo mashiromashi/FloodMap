@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useEffect } from 'react';
 import {
@@ -48,6 +49,7 @@ function GMap() {
     )
   });
 
+
   return (
     <GoogleMap
       defaultZoom={14}
@@ -59,12 +61,23 @@ function GMap() {
           position={{ lat: sensor.lat, lng: sensor.lng }}
           onClick={() => {
             setSelectedSensor(sensor);
-            console.log(sensor.id);
           }}
           icon={
-            sensor.waterLevel < 2
-              ? 'img/cursors/blueLevel.png'
-              : 'img/cursors/greenLevel.png'
+            // this is fine
+            sensor.waterLevel <= 5
+              ? 'img/cursors/greenLevel.png'
+              // a little bit not okay
+              : (sensor.waterLevel <= 10 ? 'img/cursors/yellowLevel.png' :
+                // the whole street is swimming pool
+                (sensor.waterLevel <= 20 ? 'img/cursors/orangeLevel.png' :
+                  // Our homes are gone just like my hopes and dreams
+                  (sensor.waterLevel <= 30 ? 'img/cursors/redLevel.png' :
+                    // basically atlantis
+                    (sensor.waterLevel >= 50 ? 'img/cursor/blackLevel.png' :
+                      null)
+                  )
+                )
+              )
           }
         />
       ))}

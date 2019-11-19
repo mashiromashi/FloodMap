@@ -1,10 +1,10 @@
 import moment from 'moment';
 import monthArray from './month';
 // heroku api
-// export const apiAddress = 'https://floodmap-backend.herokuapp.com';
+export const apiAddress = 'https://floodmap-backend.herokuapp.com';
 
 // localhost
-export const apiAddress = "http://localhost:8080";
+//export const apiAddress = "http://localhost:8080";
 
 
 // monthly fetch

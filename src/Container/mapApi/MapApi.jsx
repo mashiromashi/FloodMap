@@ -122,7 +122,7 @@ export default function MapApi() {
         mapElement={<div style={{ height: "100%" }} />}
       />
       <p className="flow-text center-align">
-        Green = 0-5m Red = 5-10m Orange = 10-15m
+        Green = 0-5m Yellow = 5-10m Red = >10m
       </p>
     </div>
   );

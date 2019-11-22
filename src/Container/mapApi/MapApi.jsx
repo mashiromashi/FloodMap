@@ -98,7 +98,7 @@ function GMap() {
         >
           <div>
             <p>
-              {selectedSensor.name} : {selectedSensor.waterLevel} mm
+              {selectedSensor.name} : {selectedSensor.waterLevel} m
             </p>
           </div>
         </InfoWindow>
@@ -122,7 +122,7 @@ export default function MapApi() {
         mapElement={<div style={{ height: "100%" }} />}
       />
       <p className="flow-text center-align">
-        Green = 0-5m Yellow = 5-10m Red = >10m
+        Green = 0-5m | Yellow = 5-10m | Red = >10m
       </p>
     </div>
   );
